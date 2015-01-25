@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class HelloActivity extends Activity {
+public class BalourdosActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hello_layout);
+        setContentView(R.layout.balourdos_layout);
     }
 
     @Override
