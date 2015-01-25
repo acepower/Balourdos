@@ -2,11 +2,7 @@
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android" name="Android">
-      <configuration>
-        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/resources/res" />
-        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/resources/assets" />
-        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/src/main/resources/libs" />
-      </configuration>
+      <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
