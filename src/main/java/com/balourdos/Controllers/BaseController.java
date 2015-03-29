@@ -8,13 +8,11 @@ public class BaseController extends Activity {
 
     public BaseController() {}
 
-    public void getHomeScreen(String customText) {
+    public void getHomeScreen() {
         setContentView(R.layout.home_screen_layout);
 
         TextView titleView = (TextView) findViewById(R.id.title_view);
-        titleView.setText("Balourdos");
-
-        TextView textView = (TextView) findViewById(R.id.text_view);
-        textView.setText(customText);
+        TextView whatView = (TextView) findViewById(R.id.what_view);
+        TextView whereView = (TextView) findViewById(R.id.where_view);
     }
 }

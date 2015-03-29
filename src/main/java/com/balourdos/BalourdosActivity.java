@@ -15,7 +15,7 @@ public class BalourdosActivity extends Activity {
     public void onStart() {
         super.onStart();
         BaseController baseController = new BaseController();
-        baseController.getHomeScreen("welcome");
+        baseController.getHomeScreen();
     }
 
 }
