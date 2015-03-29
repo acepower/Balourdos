@@ -1,7 +1,6 @@
 package com.balourdos.Models;
 import com.google.android.maps.*;
 
-
 /**
  * Created by kostas on 29-Mar-15.
  */

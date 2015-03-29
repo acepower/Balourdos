@@ -1,10 +1,8 @@
 package com.balourdos.Controllers;
 
-public class BaseController {
+import android.app.Application;
+
+public class BaseController extends Application {
 
     public BaseController() {}
-
-    public void getHomeScreen() {
-        new SplashController();
-    }
 }
