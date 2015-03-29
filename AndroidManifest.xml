@@ -13,7 +13,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <uses-library android:name="com.google.android.maps"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBTAQCAaiAdiOd1Gh0_httgNaGGpaixi9c"/>
