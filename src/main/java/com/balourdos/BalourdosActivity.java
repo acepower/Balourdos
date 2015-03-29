@@ -19,7 +19,7 @@ public class BalourdosActivity extends Activity {
     public void onStart() {
         super.onStart();
         TextView textView = (TextView) findViewById(R.id.text_view);
-        textView.setText("Hellooooooooo!");
+        textView.setText("kosta re malakas");
     }
 
 }
