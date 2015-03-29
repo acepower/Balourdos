@@ -2,7 +2,6 @@ package com.balourdos.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
 import com.balourdos.Controllers.BaseController;
 import com.balourdos.R;
 
