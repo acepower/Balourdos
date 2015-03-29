@@ -3,9 +3,11 @@ package com.balourdos;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
-import com.google.maps.*;
+import com.google.android.maps.MapView;
 
 public class BalourdosActivity extends Activity {
+
+    private MapView mapView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

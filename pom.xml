@@ -21,9 +21,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.maps</groupId>
-            <artifactId>google-maps-services</artifactId>
-            <version>0.1.6</version>
+            <groupId>com.google.android.maps</groupId>
+            <artifactId>maps</artifactId>
+            <version>21_r1</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 
