@@ -3,6 +3,7 @@ package com.balourdos;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+import com.google.maps.*;
 
 public class BalourdosActivity extends Activity {
 

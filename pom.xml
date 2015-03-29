@@ -20,6 +20,11 @@
             <version>4.1.1.4</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.maps</groupId>
+            <artifactId>google-maps-services</artifactId>
+            <version>0.1.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -32,7 +37,6 @@
                     <sdk>
                         <platform>19</platform>
                     </sdk>
-                    <deleteConflictingFiles>true</deleteConflictingFiles>
                     <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
                 <extensions>true</extensions>
