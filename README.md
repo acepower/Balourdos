@@ -22,6 +22,10 @@ It is a content aggregator to enable users to find local attractions
 - Google Maps API
 - JUnit
 
+## Example view
+
+![List View](http://i.imgur.com/yEP4oqu.png)
+
 ## Updates
 
 Please follow / watch the project for updates
