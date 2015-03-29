@@ -18,10 +18,6 @@ public class BalourdosActivity extends Activity {
 
     private void startHomeScreen() {
         setContentView(R.layout.home_screen_layout);
-
-        TextView titleView = (TextView) findViewById(R.id.title_view);
-        TextView whatView = (TextView) findViewById(R.id.what_view);
-        TextView whereView = (TextView) findViewById(R.id.where_view);
     }
 
 }
