@@ -23,13 +23,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.google.android.maps</groupId>
             <artifactId>maps</artifactId>
-            <version>22_r1</version>
+            <version>21_r1</version>
             <type>jar</type>
         </dependency>
     </dependencies>
