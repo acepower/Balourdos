@@ -9,4 +9,11 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     />
+<com.google.android.maps.MapView
+        android:id="@+id/mv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        android:apiKey="AIzaSyBTAQCAaiAdiOd1Gh0_httgNaGGpaixi9c"
+     />
 </LinearLayout>
