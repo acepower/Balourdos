@@ -19,7 +19,7 @@
             android:required="true"/>
 
     <application android:label="@string/app_name"
-        android:name="com.balourdos.Controllers.BaseController">
+        android:name=".BalourdosApplication">
         <activity
             android:name=".Activities.BalourdosActivity"
             android:label="@string/app_name" >
