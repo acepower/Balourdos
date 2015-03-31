@@ -1,5 +1,6 @@
 package com.balourdos.Controllers;
 
+import android.app.Application;
 import com.balourdos.BalourdosApplication;
 
 public class BaseController {

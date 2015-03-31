@@ -1,8 +1,8 @@
 package com.balourdos.Mocks;
 
-import android.app.Application;
+import com.balourdos.BalourdosApplication;
 
-public class MockApplication {
+public class MockApplication extends BalourdosApplication {
     public MockApplication() {}
 
     public MockGPSTracker gps = new MockGPSTracker(this);

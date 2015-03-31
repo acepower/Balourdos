@@ -5,14 +5,16 @@ import junit.framework.TestCase;
 
 public class BaseControllerTest extends TestCase {
 
-    private MockApplication application;
+    private BaseController controller;
+    private MockApplication app;
 
     public void setUp() {
-        this.application = new MockApplication();
+        this.app = new MockApplication();
+        this.controller = new BaseController(this.app);
     }
 
     public void testRandomTest() {
-        this.application.gps.setLatitude(44.42);
-        assertEquals(44.42, this.application.gps.getLatitude());
+        this.app.gps.setLatitude(44.42);
+        assertEquals(44.42, this.app.gps.getLatitude());
     }
 }
