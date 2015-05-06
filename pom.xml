@@ -65,6 +65,7 @@
             <groupId>com.android.support</groupId>
             <artifactId>appcompat-v7</artifactId>
             <version>21.0.3</version>
+            <type>aar</type>
         </dependency>
     </dependencies>
 
