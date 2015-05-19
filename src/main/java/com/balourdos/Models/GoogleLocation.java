@@ -4,6 +4,7 @@ package com.balourdos.Models;
 
 import android.location.Location;
 import android.os.Bundle;
+import android.content.Context;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -18,8 +19,10 @@ public class GoogleLocation implements GoogleApiClient.ConnectionCallbacks,Googl
     private boolean isConnected = false;
     private boolean isConnectionSuspended = false;
     private boolean isConnectonFailed = false;
+    private Context mContext;
 
-    public GoogleLocation(android.content.Context applicationContext) {
+    public GoogleLocation(Context applicationContext) {
+        System.out.println(applicationContext);
         this.CONNECTION = new GoogleApiClient.Builder(applicationContext)
                 .addApi(LocationServices.API)
                 .addOnConnectionFailedListener(this)

@@ -10,7 +10,7 @@ public class BaseControllerTest extends TestCase {
 
     public void setUp() {
         this.app = new MockApplication();
-        this.controller = new BaseController(this.app);
+        this.controller = new BaseController();
     }
 
     public void testRandomTest() {
