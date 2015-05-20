@@ -17,12 +17,12 @@ public class BaseController {
         System.out.println(this.gps.canGetLocation());
 
         if (this.gps.canGetLocation()) {
-            System.out.println(this.gps.getLatitude());
-            System.out.println(this.gps.getLongitude());
+            System.out.println("gps"+ this.gps.getLatitude());
+            System.out.println("gps"+ this.gps.getLongitude());
         }
     }
     public void getFusedCurrentLocation()
     {
-        System.out.println(this.fusedLocation.getLastLocation());
+        System.out.println("fused location" + this.fusedLocation.getLastLocation());
     }
 }
