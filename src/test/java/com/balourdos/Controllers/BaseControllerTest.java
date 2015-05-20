@@ -12,9 +12,4 @@ public class BaseControllerTest extends TestCase {
         this.app = new MockApplication();
         this.controller = new BaseController();
     }
-
-    public void testRandomTest() {
-        this.app.gps.setLatitude(44.42);
-        assertEquals(44.42, this.app.gps.getLatitude());
-    }
 }

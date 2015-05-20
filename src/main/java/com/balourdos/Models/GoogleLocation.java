@@ -1,7 +1,5 @@
 package com.balourdos.Models;
 
-
-
 import android.location.Location;
 import com.balourdos.BalourdosApplication;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -9,21 +7,15 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.*;
 
+public class GoogleLocation {
 
-public class GoogleLocation{
-
-
-
-    private final GooglePlayConnect Connection;
+    private final GooglePlayConnect connection;
     private final GoogleApiClient client;
 
     public GoogleLocation() {
-
-       this.Connection = new GooglePlayConnect(BalourdosApplication.getContext(), LocationServices.API);
-       this.client = Connection.getConnection();
+       this.connection = new GooglePlayConnect(BalourdosApplication.getContext(), LocationServices.API);
+       this.client = connection.getConnection();
     }
-
-    //--------------------------------- location services ---------------------------------//
 
     /**
      * Uses the FusedLocationApi method getLastLocation
@@ -31,18 +23,16 @@ public class GoogleLocation{
      */
     public Location getLastLocation()
     {
-
-        if(this.Connection.isConnected()) {
+        if (this.connection.isConnected()) {
             try {
                 return LocationServices.FusedLocationApi.getLastLocation(this.client);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else
-        {
+        } else {
             throw new NullPointerException("Not connected to google play");
         }
+
         return null;
     }
 
@@ -55,22 +45,26 @@ public class GoogleLocation{
      */
     public PendingResult<Status> RequestLocationUpdate(LocationListener listener, LocationRequest request)
     {
-        if(this.Connection.isConnected()) {
+        if (this.connection.isConnected()) {
             try {
                 return LocationServices.FusedLocationApi.requestLocationUpdates(this.client, request, listener);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return null;
-    }
-    public PendingResult<Status> RemoveLocationUpdates(LocationListener listener)
-    {
-        if(this.Connection.isConnected())
-        return LocationServices.FusedLocationApi.removeLocationUpdates(this.client, listener);
 
         return null;
     }
+
+    public PendingResult<Status> RemoveLocationUpdates(LocationListener listener)
+    {
+        if (this.connection.isConnected()) {
+            return LocationServices.FusedLocationApi.removeLocationUpdates(this.client, listener);
+        }
+
+        return null;
+    }
+
     public GoogleLocation getLocationObj()
     {
         return this;
