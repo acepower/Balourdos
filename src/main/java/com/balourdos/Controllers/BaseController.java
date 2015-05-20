@@ -10,7 +10,7 @@ public class BaseController {
 
     public BaseController() {
         this.gps = new GPSTracker(BalourdosApplication.getContext());
-        this.fusedLocation = new GoogleLocation(BalourdosApplication.getContext());
+        this.fusedLocation = new GoogleLocation();
     }
 
     public void getCurrentLocation() {
