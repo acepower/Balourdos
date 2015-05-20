@@ -119,10 +119,7 @@ class GooglePlayConnect implements GoogleApiClient.ConnectionCallbacks,GoogleApi
      */
     public GoogleApiClient getConnection()
     {
-        if(this.isConnected())
-            return this.CONNECTION;
-        else
-            return null;
+        return this.CONNECTION;
     }
 
 

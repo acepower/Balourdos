@@ -13,6 +13,6 @@ public class BaseController {
     
     public void getFusedCurrentLocation()
     {
-        System.out.println(this.fusedLocation.getLastLocation());
+        System.out.println("fused location" + this.fusedLocation.getLastLocation());
     }
 }
