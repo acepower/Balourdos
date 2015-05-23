@@ -7,11 +7,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class GoogleConnection {
     protected GooglePlayConnect connection;
-    protected GoogleApiClient client;
 
     public GoogleConnection() {
         GoogleComponent googleComponent = DaggerGoogleComponent.builder().googleModule(new GoogleModule()).build();
-        this.client = googleComponent.provideGoogleApiClient();
-        this.connection = new GooglePlayConnect(this.client);
+        this.connection = new GooglePlayConnect(googleComponent.provideGoogleApiClient());
     }
 }

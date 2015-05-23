@@ -14,9 +14,9 @@ public class GoogleLocation extends GoogleConnection {
      */
     public Location getLastLocation()
     {
-        if (this.client.isConnected()) {
+        if (this.connection.isConnected()) {
             try {
-                return LocationServices.FusedLocationApi.getLastLocation(this.client);
+                return LocationServices.FusedLocationApi.getLastLocation(this.connection.getClient());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -36,9 +36,9 @@ public class GoogleLocation extends GoogleConnection {
      */
     public PendingResult<Status> RequestLocationUpdate(LocationListener listener, LocationRequest request)
     {
-        if (this.client.isConnected()) {
+        if (this.connection.isConnected()) {
             try {
-                return LocationServices.FusedLocationApi.requestLocationUpdates(this.client, request, listener);
+                return LocationServices.FusedLocationApi.requestLocationUpdates(this.connection.getClient(), request, listener);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -49,8 +49,8 @@ public class GoogleLocation extends GoogleConnection {
 
     public PendingResult<Status> RemoveLocationUpdates(LocationListener listener)
     {
-        if (this.client.isConnected()) {
-            return LocationServices.FusedLocationApi.removeLocationUpdates(this.client, listener);
+        if (this.connection.isConnected()) {
+            return LocationServices.FusedLocationApi.removeLocationUpdates(this.connection.getClient(), listener);
         }
 
         return null;

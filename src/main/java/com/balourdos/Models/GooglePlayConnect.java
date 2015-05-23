@@ -1,11 +1,11 @@
 package com.balourdos.Models;
 
+import android.util.Log;
 import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
 
 class GooglePlayConnect {
-
-    private final GoogleApiClient googleApiClient;
+    private GoogleApiClient googleApiClient;
 
     @Inject
     public GooglePlayConnect(GoogleApiClient googleApiClient) {
@@ -14,8 +14,17 @@ class GooglePlayConnect {
 
         try {
             this.googleApiClient.connect();
+            Log.d("test", "testing");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public GoogleApiClient getClient() {
+        return this.googleApiClient;
+    }
+
+    public boolean isConnected() {
+        return this.googleApiClient.isConnected();
     }
 }
