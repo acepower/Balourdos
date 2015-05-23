@@ -26,7 +26,6 @@ public class BalourdosActivity extends Activity {
         whereText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                controller.getCurrentLocation();
                 controller.getFusedCurrentLocation();
             }
         });

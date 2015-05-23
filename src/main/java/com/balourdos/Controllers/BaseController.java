@@ -7,7 +7,7 @@ public class BaseController {
     private GoogleLocation fusedLocation;
 
     public BaseController() {
-        this.fusedLocation = new GoogleLocation();
+        this.fusedLocation = GoogleLocation.getInstance();
     }
 
     public void getFusedCurrentLocation()

@@ -103,6 +103,9 @@ class GooglePlayConnect implements GoogleApiClient.ConnectionCallbacks,GoogleApi
 
     }
 
+    /**
+     * disconnect from google play services
+     */
     public void disconnect() {
         this.CONNECTION.disconnect();
     }

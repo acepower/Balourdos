@@ -11,11 +11,18 @@ public class GoogleLocation {
 
     private final GooglePlayConnect connection;
     private final GoogleApiClient client;
+    private static final GoogleLocation INSTANCE = new GoogleLocation();
 
-    public GoogleLocation() {
+    private GoogleLocation() {
        this.connection = new GooglePlayConnect(BalourdosApplication.getContext(), LocationServices.API);
        this.client = connection.getConnection();
     }
+
+    /**
+     *
+     * @return singleton
+     */
+    public static GoogleLocation getInstance() {return INSTANCE;}
 
     /**
      * Uses the FusedLocationApi method getLastLocation
@@ -63,11 +70,6 @@ public class GoogleLocation {
         }
 
         return null;
-    }
-
-    public GoogleLocation getLocationObj()
-    {
-        return this;
     }
 
 }
