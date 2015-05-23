@@ -10,13 +10,11 @@ import com.balourdos.R;
 public class BalourdosActivity extends Activity {
     private BaseController controller;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.controller = new BaseController();
         this.startHomeScreen();
-
     }
 
     private void startHomeScreen() {

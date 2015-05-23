@@ -7,22 +7,7 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.*;
 
-public class GoogleLocation {
-
-    private final GooglePlayConnect connection;
-    private final GoogleApiClient client;
-    private static final GoogleLocation INSTANCE = new GoogleLocation();
-
-    private GoogleLocation() {
-       this.connection = GooglePlayConnect.getGooglePlayConnection();
-       this.client = connection.getConnection();
-    }
-
-    /**
-     *
-     * @return singleton
-     */
-    public static GoogleLocation getInstance() {return INSTANCE;}
+public class GoogleLocation extends GoogleConnection {
 
     /**
      * Uses the FusedLocationApi method getLastLocation
@@ -30,7 +15,7 @@ public class GoogleLocation {
      */
     public Location getLastLocation()
     {
-        if (this.connection.isConnected()) {
+        if (this.client.isConnected()) {
             try {
                 return LocationServices.FusedLocationApi.getLastLocation(this.client);
             } catch (Exception e) {
@@ -52,7 +37,7 @@ public class GoogleLocation {
      */
     public PendingResult<Status> RequestLocationUpdate(LocationListener listener, LocationRequest request)
     {
-        if (this.connection.isConnected()) {
+        if (this.client.isConnected()) {
             try {
                 return LocationServices.FusedLocationApi.requestLocationUpdates(this.client, request, listener);
             } catch (Exception e) {
@@ -65,7 +50,7 @@ public class GoogleLocation {
 
     public PendingResult<Status> RemoveLocationUpdates(LocationListener listener)
     {
-        if (this.connection.isConnected()) {
+        if (this.client.isConnected()) {
             return LocationServices.FusedLocationApi.removeLocationUpdates(this.client, listener);
         }
 
