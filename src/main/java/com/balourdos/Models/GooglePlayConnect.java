@@ -6,27 +6,33 @@ package com.balourdos.Models;
 
 import android.os.Bundle;
 import android.content.Context;
+import com.balourdos.BalourdosApplication;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Places;
+
+import java.util.List;
 
 
 class GooglePlayConnect implements GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener {
 
 
+    private static final GooglePlayConnect INSTANCE = new GooglePlayConnect(BalourdosApplication.getContext());
     private final GoogleApiClient CONNECTION;
     private boolean isConnected = false;
     private boolean isConnectionSuspended = false;
     private boolean isConnectonFailed = false;
     private boolean mResolvingError = false;
 
-    public GooglePlayConnect(Context applicationContext, Api api) {
-        if(api==null || applicationContext==null)
-            throw new NullPointerException("API or applicationContext cannot be null");
+    private GooglePlayConnect(Context applicationContext) {
+
 
         this.CONNECTION = new GoogleApiClient.Builder(applicationContext)
-            //don't like this, need to research.
-            .addApi(api)
+            .addApi(LocationServices.API)
+            .addApi(Places.GEO_DATA_API)
+            .addApi(Places.PLACE_DETECTION_API)
             .addOnConnectionFailedListener(this)
             .addConnectionCallbacks(this)
             .build();
@@ -38,6 +44,12 @@ class GooglePlayConnect implements GoogleApiClient.ConnectionCallbacks,GoogleApi
         }
 
     }
+
+    /**
+     *
+     * @return singleton
+     */
+    public  static  GooglePlayConnect getGooglePlayConnection() {return INSTANCE;}
 
     /**
      * Connected to Google Play services! The good stuff happens there

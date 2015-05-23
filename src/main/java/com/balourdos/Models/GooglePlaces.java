@@ -14,7 +14,7 @@ public class GooglePlaces {
     private static final GooglePlaces INSTANCE = new GooglePlaces();
 
     private GooglePlaces(){
-        this.connection = new GooglePlayConnect(BalourdosApplication.getContext(), Places.GEO_DATA_API);
+        this.connection = GooglePlayConnect.getGooglePlayConnection();
         this.client = connection.getConnection();
     }
 

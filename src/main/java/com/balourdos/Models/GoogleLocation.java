@@ -14,7 +14,7 @@ public class GoogleLocation {
     private static final GoogleLocation INSTANCE = new GoogleLocation();
 
     private GoogleLocation() {
-       this.connection = new GooglePlayConnect(BalourdosApplication.getContext(), LocationServices.API);
+       this.connection = GooglePlayConnect.getGooglePlayConnection();
        this.client = connection.getConnection();
     }
 
