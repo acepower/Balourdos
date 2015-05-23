@@ -10,8 +10,11 @@ public class BaseController {
         this.fusedLocation = new GoogleLocation();
     }
 
-    public void getFusedCurrentLocation()
-    {
+    public void getFusedCurrentLocation() {
         System.out.println("fused location" + this.fusedLocation.getLastLocation());
+    }
+
+    public void getPayload() {
+
     }
 }
