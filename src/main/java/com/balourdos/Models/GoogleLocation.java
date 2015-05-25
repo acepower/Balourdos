@@ -20,21 +20,14 @@ public class GoogleLocation extends GoogleConnection {
     public static GoogleLocation getLocationObject() {return INSTANCE;}
     /**
      * Uses the FusedLocationApi method getLastLocation
-     * @return the best most recent location currently available.
+     * @return the best most recent location currently available or null.
      */
-
     public Location getLastLocation()
     {
-        if (this.connection.isConnected()) {
-            try {
-                return LocationServices.FusedLocationApi.getLastLocation(this.connection.getClient());
-            } catch (Exception e) {
+        try{return LocationServices.FusedLocationApi.getLastLocation(this.connection.getClient());}
+        catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            throw new NullPointerException("Not connected to google play");
-        }
-
         return null;
     }
 
@@ -47,23 +40,19 @@ public class GoogleLocation extends GoogleConnection {
      */
     public PendingResult<Status> RequestLocationUpdate(LocationListener listener, LocationRequest request)
     {
-        if (this.connection.isConnected()) {
-            try {
-                return LocationServices.FusedLocationApi.requestLocationUpdates(this.connection.getClient(), request, listener);
-            } catch (Exception e) {
+        try {return LocationServices.FusedLocationApi.requestLocationUpdates(this.connection.getClient(), request, listener);}
+        catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-
         return null;
     }
 
     public PendingResult<Status> RemoveLocationUpdates(LocationListener listener)
     {
-        if (this.connection.isConnected()) {
-            return LocationServices.FusedLocationApi.removeLocationUpdates(this.connection.getClient(), listener);
+        try{return LocationServices.FusedLocationApi.removeLocationUpdates(this.connection.getClient(), listener);}
+        catch (Exception e){
+            e.printStackTrace();
         }
-
         return null;
     }
 
