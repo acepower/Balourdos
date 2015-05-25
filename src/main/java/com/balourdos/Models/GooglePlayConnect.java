@@ -1,6 +1,5 @@
 package com.balourdos.Models;
 
-
 import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
 

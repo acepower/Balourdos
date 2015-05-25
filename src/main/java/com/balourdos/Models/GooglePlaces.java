@@ -5,6 +5,8 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.*;
 
+import javax.inject.Inject;
+
 public class GooglePlaces extends GoogleConnection {
 
     private static GooglePlaces INSTANCE = null;
@@ -12,15 +14,16 @@ public class GooglePlaces extends GoogleConnection {
     /**
      * super constructor
      */
-    private GooglePlaces(GooglePlayConnect connection){super(connection);}
+    private GooglePlaces(GoogleApiClient client){super(client);}
 
     /**
      *
      * @return singleton
      */
-    public static GooglePlaces getGooglePlacesObj(GooglePlayConnect connection)
+    @Inject
+    public static GooglePlaces getGooglePlacesObj(GoogleApiClient client)
     {   if (INSTANCE==null)
-        INSTANCE = new GooglePlaces(connection);
+        INSTANCE = new GooglePlaces(client);
 
         return INSTANCE;
     }
@@ -33,7 +36,7 @@ public class GooglePlaces extends GoogleConnection {
      */
     public PendingResult<PlaceLikelihoodBuffer> getCurrentPlace(PlaceFilter filter)
     {
-        return Places.PlaceDetectionApi.getCurrentPlace(this.connection.getClient(), filter);
+        return Places.PlaceDetectionApi.getCurrentPlace(this.client, filter);
     }
 
     /**
@@ -43,7 +46,7 @@ public class GooglePlaces extends GoogleConnection {
      */
     public PendingResult<Status> reportDeviceAtPlace(PlaceReport report)
     {
-        return Places.PlaceDetectionApi.reportDeviceAtPlace(this.connection.getClient(), report);
+        return Places.PlaceDetectionApi.reportDeviceAtPlace(this.client, report);
     }
 
     /**
@@ -53,7 +56,7 @@ public class GooglePlaces extends GoogleConnection {
      */
     public  PendingResult<PlaceBuffer> addPlace (AddPlaceRequest addPlaceRequest)
     {
-        return Places.GeoDataApi.addPlace(this.connection.getClient(), addPlaceRequest);
+        return Places.GeoDataApi.addPlace(this.client, addPlaceRequest);
     }
 
     /**
@@ -63,12 +66,6 @@ public class GooglePlaces extends GoogleConnection {
      */
     public PendingResult<PlaceBuffer> getPlaceById (String... placeIds)
     {
-        return Places.GeoDataApi.getPlaceById(this.connection.getClient(), placeIds);
+        return Places.GeoDataApi.getPlaceById(this.client, placeIds);
     }
-    public GoogleApiClient getClient()
-    {
-        return this.connection.getClient();
-    }
-
-
 }

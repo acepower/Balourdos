@@ -6,21 +6,25 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.*;
 
+import javax.inject.Inject;
+
 public class GoogleLocation extends GoogleConnection {
 
     private static GoogleLocation INSTANCE = null;
     /**
      * Calling the super constructor
      */
-    private GoogleLocation(GooglePlayConnect connection) {super(connection);}
+    private GoogleLocation(GoogleApiClient client) {super(client);}
 
     /**
      *
      * @return singleton
      */
-    public static GoogleLocation getLocationObj(GooglePlayConnect connection)
-    {   if (INSTANCE == null)
-        INSTANCE = new GoogleLocation(connection);
+    @Inject
+    public static GoogleLocation getLocationObj(GoogleApiClient client)
+    {   if (INSTANCE == null) {
+            INSTANCE = new GoogleLocation(client);
+        }
 
         return INSTANCE;
     }
@@ -30,7 +34,7 @@ public class GoogleLocation extends GoogleConnection {
      */
     public Location getLastLocation()
     {
-        try{return LocationServices.FusedLocationApi.getLastLocation(this.connection.getClient());}
+        try{return LocationServices.FusedLocationApi.getLastLocation(this.client);}
         catch (Exception e) {
                 e.printStackTrace();
             }
@@ -46,7 +50,7 @@ public class GoogleLocation extends GoogleConnection {
      */
     public PendingResult<Status> RequestLocationUpdate(LocationListener listener, LocationRequest request)
     {
-        try {return LocationServices.FusedLocationApi.requestLocationUpdates(this.connection.getClient(), request, listener);}
+        try {return LocationServices.FusedLocationApi.requestLocationUpdates(this.client, request, listener);}
         catch (Exception e) {
                 e.printStackTrace();
             }
@@ -55,15 +59,11 @@ public class GoogleLocation extends GoogleConnection {
 
     public PendingResult<Status> RemoveLocationUpdates(LocationListener listener)
     {
-        try{return LocationServices.FusedLocationApi.removeLocationUpdates(this.connection.getClient(), listener);}
+        try{return LocationServices.FusedLocationApi.removeLocationUpdates(this.client, listener);}
         catch (Exception e){
             e.printStackTrace();
         }
         return null;
-    }
-    public GoogleApiClient getClient()
-    {
-        return this.connection.getClient();
     }
 
 }
