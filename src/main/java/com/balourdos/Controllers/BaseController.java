@@ -20,6 +20,9 @@ public class BaseController {
 
     public void getPayload() {
         System.out.println("fused location" + this.fusedLocation.getLastLocation());
+        System.out.println(this.fusedLocation.getClient().hashCode());
+        System.out.println(this.googlePlaces.getClient().hashCode());
+
 
     }
 }

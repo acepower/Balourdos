@@ -37,8 +37,7 @@ public class GooglePlaces extends GoogleConnection {
      * @param filter A PlaceFilter allows you to restrict results to only those places that are of interest to them.
      * @return  an estimate of the place where the device is currently known to be located.
      */
-    public PendingResult<PlaceLikelihoodBuffer> getCurrentPlace(PlaceFilter filter)
-    {
+    public PendingResult<PlaceLikelihoodBuffer> getCurrentPlace(PlaceFilter filter) {
         return Places.PlaceDetectionApi.getCurrentPlace(this.client, filter);
     }
 
@@ -47,8 +46,7 @@ public class GooglePlaces extends GoogleConnection {
      * @param report An indication from the client that the device is currently located at a particular place.
      * @return Report that the device is currently at a particular place.
      */
-    public PendingResult<Status> reportDeviceAtPlace(PlaceReport report)
-    {
+    public PendingResult<Status> reportDeviceAtPlace(PlaceReport report) {
         return Places.PlaceDetectionApi.reportDeviceAtPlace(this.client, report);
     }
 
@@ -57,8 +55,7 @@ public class GooglePlaces extends GoogleConnection {
      * @param addPlaceRequest Add a place to Google's Places database.
      * @return a buffer containing the added place
      */
-    public  PendingResult<PlaceBuffer> addPlace (AddPlaceRequest addPlaceRequest)
-    {
+    public  PendingResult<PlaceBuffer> addPlace (AddPlaceRequest addPlaceRequest) {
         return Places.GeoDataApi.addPlace(this.client, addPlaceRequest);
     }
 
@@ -67,8 +64,11 @@ public class GooglePlaces extends GoogleConnection {
      * @param placeIds strings to construct the places
      * @return Returns the places for the given placeIds.
      */
-    public PendingResult<PlaceBuffer> getPlaceById (String... placeIds)
-    {
+    public PendingResult<PlaceBuffer> getPlaceById (String... placeIds) {
         return Places.GeoDataApi.getPlaceById(this.client, placeIds);
+    }
+    public GoogleApiClient getClient()
+    {
+        return this.client;
     }
 }
