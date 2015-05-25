@@ -7,14 +7,22 @@ import com.google.android.gms.location.*;
 
 public class GoogleLocation extends GoogleConnection {
 
+    private static final GoogleLocation INSTANCE = new GoogleLocation();
     /**
      * Calling the super constructor
      */
-    public GoogleLocation() {super();}
+    private GoogleLocation() {super();}
+
+    /**
+     *
+     * @return singleton
+     */
+    public static GoogleLocation getLocationObject() {return INSTANCE;}
     /**
      * Uses the FusedLocationApi method getLastLocation
      * @return the best most recent location currently available.
      */
+
     public Location getLastLocation()
     {
         if (this.connection.isConnected()) {

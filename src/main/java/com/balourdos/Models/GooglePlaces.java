@@ -1,8 +1,21 @@
 package com.balourdos.Models;
 
 
-import com.google.android.gms.common.api.GoogleApiClient;
 
-public class GooglePlaces {
 
+public class GooglePlaces extends GoogleConnection {
+
+
+    private static final GooglePlaces INSTANCE = new GooglePlaces();
+
+    /**
+     * super constructor
+     */
+    private GooglePlaces(){super();}
+
+    /**
+     *
+     * @return singleton
+     */
+    public static GooglePlaces getGooglePlacesObj() {return INSTANCE;}
 }

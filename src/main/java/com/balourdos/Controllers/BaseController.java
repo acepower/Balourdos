@@ -7,12 +7,9 @@ public class BaseController {
     private GoogleLocation fusedLocation;
 
     public BaseController() {
-        this.fusedLocation = new GoogleLocation();
+        this.fusedLocation = GoogleLocation.getLocationObject();
     }
 
-    public void getFusedCurrentLocation() {
-        System.out.println("fused location" + this.fusedLocation.getLastLocation());
-    }
 
     public void getPayload() {
         System.out.println("fused location" + this.fusedLocation.getLastLocation());

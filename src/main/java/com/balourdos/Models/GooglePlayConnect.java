@@ -1,6 +1,6 @@
 package com.balourdos.Models;
 
-import android.util.Log;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
 
@@ -14,7 +14,6 @@ class GooglePlayConnect {
 
         try {
             this.googleApiClient.connect();
-            Log.d("test", "testing");
         } catch (Exception e) {
             e.printStackTrace();
         }
