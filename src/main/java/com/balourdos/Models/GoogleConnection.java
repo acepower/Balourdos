@@ -12,19 +12,11 @@ public abstract class GoogleConnection {
      * Creates a new GoogleApiClient to be injected to the GooglePlayConnect class
      */
     protected GoogleConnection(GoogleApiClient client) {
-        if(client!=null) {
+        if(client != null) {
             this.client = client;
         }
         else {
             throw new NullPointerException("client cannot be null");
         }
-        try{
-            this.client.connect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
-
-
 }
