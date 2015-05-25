@@ -15,6 +15,7 @@ public class BaseController {
         GoogleComponent googleComponent = DaggerGoogleComponent.builder().googleModule(new GoogleModule()).build();
         this.client = googleComponent.provideGoogleApiClient();
 
+        // TODO CONVERT TO FUTURE
         this.client.registerConnectionCallbacks(new ConnectionCallbacks() {
             private GoogleController googleController;
 
