@@ -54,7 +54,6 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
             showErrorDialog(connectionResult.getErrorCode());
             mResolvingError = true;
         }
-
     }
 
     private void showErrorDialog(int errorCode)
