@@ -1,13 +1,16 @@
 package com.balourdos.Models;
 
 import android.location.Location;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.*;
 
 public class GoogleLocation extends GoogleConnection {
 
+    /**
+     * Calling the super constructor
+     */
+    public GoogleLocation() {super();}
     /**
      * Uses the FusedLocationApi method getLastLocation
      * @return the best most recent location currently available.

@@ -60,8 +60,4 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
     {
 
     }
-
-    public boolean isConnected() {
-        return this.isConnected;
-    }
 }

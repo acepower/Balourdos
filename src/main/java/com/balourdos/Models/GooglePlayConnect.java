@@ -5,7 +5,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
 
 class GooglePlayConnect {
-    private GoogleApiClient googleApiClient;
+    private final GoogleApiClient googleApiClient;
 
     @Inject
     public GooglePlayConnect(GoogleApiClient googleApiClient) {

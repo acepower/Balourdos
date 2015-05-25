@@ -15,6 +15,6 @@ public class BaseController {
     }
 
     public void getPayload() {
-
+        System.out.println("fused location" + this.fusedLocation.getLastLocation());
     }
 }

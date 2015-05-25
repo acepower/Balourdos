@@ -6,7 +6,7 @@ import com.balourdos.Modules.GoogleModule;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 public class GoogleConnection {
-    protected GooglePlayConnect connection;
+    protected final GooglePlayConnect connection;
 
     public GoogleConnection() {
         GoogleComponent googleComponent = DaggerGoogleComponent.builder().googleModule(new GoogleModule()).build();

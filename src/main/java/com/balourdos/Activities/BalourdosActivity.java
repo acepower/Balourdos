@@ -14,13 +14,20 @@ public class BalourdosActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.controller = new BaseController();
-        this.controller.getPayload();
         this.startHomeScreen();
     }
 
     private void startHomeScreen() {
         setContentView(R.layout.home_screen_layout);
         EditText whereText = (EditText) findViewById(R.id.whereText);
+
+        whereText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.getPayload();
+            }
+        });
+
     }
 
 
