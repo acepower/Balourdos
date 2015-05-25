@@ -3,7 +3,7 @@ package com.balourdos.Models;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import javax.inject.Inject;
+
 
 public abstract class GoogleConnection {
     protected final GoogleApiClient client;
@@ -11,8 +11,20 @@ public abstract class GoogleConnection {
     /**
      * Creates a new GoogleApiClient to be injected to the GooglePlayConnect class
      */
-    @Inject
     protected GoogleConnection(GoogleApiClient client) {
-        this.client = client;
+        if(client!=null) {
+            this.client = client;
+        }
+        else {
+            throw new NullPointerException("client cannot be null");
+        }
+        try{
+            this.client.connect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+
+
 }

@@ -67,5 +67,9 @@ public class GoogleLocation extends GoogleConnection {
         }
         return null;
     }
+    public GoogleApiClient getClient()
+    {
+        return this.client;
+    }
 
 }
