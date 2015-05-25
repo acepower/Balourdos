@@ -17,6 +17,7 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
     private boolean isConnectonFailed = false;
     private boolean mResolvingError = false;
 
+
     @Provides @Singleton
     GoogleApiClient provideGoogleApiClient() {
         return new GoogleApiClient.Builder(BalourdosApplication.getContext())

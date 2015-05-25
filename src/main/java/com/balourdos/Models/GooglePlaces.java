@@ -1,23 +1,29 @@
 package com.balourdos.Models;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.*;
 
 public class GooglePlaces extends GoogleConnection {
 
-    private static final GooglePlaces INSTANCE = new GooglePlaces();
+    private static GooglePlaces INSTANCE = null;
 
     /**
      * super constructor
      */
-    private GooglePlaces(){super();}
+    private GooglePlaces(GooglePlayConnect connection){super(connection);}
 
     /**
      *
      * @return singleton
      */
-    public static GooglePlaces getGooglePlacesObj() {return INSTANCE;}
+    public static GooglePlaces getGooglePlacesObj(GooglePlayConnect connection)
+    {   if (INSTANCE==null)
+        INSTANCE = new GooglePlaces(connection);
+
+        return INSTANCE;
+    }
 
 
     /**
@@ -27,7 +33,6 @@ public class GooglePlaces extends GoogleConnection {
      */
     public PendingResult<PlaceLikelihoodBuffer> getCurrentPlace(PlaceFilter filter)
     {
-
         return Places.PlaceDetectionApi.getCurrentPlace(this.connection.getClient(), filter);
     }
 
@@ -59,6 +64,10 @@ public class GooglePlaces extends GoogleConnection {
     public PendingResult<PlaceBuffer> getPlaceById (String... placeIds)
     {
         return Places.GeoDataApi.getPlaceById(this.connection.getClient(), placeIds);
+    }
+    public GoogleApiClient getClient()
+    {
+        return this.connection.getClient();
     }
 
 

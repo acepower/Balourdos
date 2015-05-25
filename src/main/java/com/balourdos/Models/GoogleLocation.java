@@ -1,23 +1,29 @@
 package com.balourdos.Models;
 
 import android.location.Location;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.*;
 
 public class GoogleLocation extends GoogleConnection {
 
-    private static final GoogleLocation INSTANCE = new GoogleLocation();
+    private static GoogleLocation INSTANCE = null;
     /**
      * Calling the super constructor
      */
-    private GoogleLocation() {super();}
+    private GoogleLocation(GooglePlayConnect connection) {super(connection);}
 
     /**
      *
      * @return singleton
      */
-    public static GoogleLocation getLocationObject() {return INSTANCE;}
+    public static GoogleLocation getLocationObj(GooglePlayConnect connection)
+    {   if (INSTANCE == null)
+        INSTANCE = new GoogleLocation(connection);
+
+        return INSTANCE;
+    }
     /**
      * Uses the FusedLocationApi method getLastLocation
      * @return the best most recent location currently available or null.
@@ -54,6 +60,10 @@ public class GoogleLocation extends GoogleConnection {
             e.printStackTrace();
         }
         return null;
+    }
+    public GoogleApiClient getClient()
+    {
+        return this.connection.getClient();
     }
 
 }
