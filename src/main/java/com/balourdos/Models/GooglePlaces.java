@@ -14,7 +14,9 @@ public class GooglePlaces extends GoogleConnection {
     /**
      * super constructor
      */
-    private GooglePlaces(GoogleApiClient client){super(client);}
+    private GooglePlaces(GoogleApiClient client){
+        super(client);
+    }
 
     /**
      *
@@ -22,8 +24,9 @@ public class GooglePlaces extends GoogleConnection {
      */
     @Inject
     public static GooglePlaces getGooglePlacesObj(GoogleApiClient client)
-    {   if (INSTANCE==null)
-        INSTANCE = new GooglePlaces(client);
+    {   if (INSTANCE==null) {
+            INSTANCE = new GooglePlaces(client);
+        }
 
         return INSTANCE;
     }

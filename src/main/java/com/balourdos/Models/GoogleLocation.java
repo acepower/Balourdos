@@ -14,7 +14,9 @@ public class GoogleLocation extends GoogleConnection {
     /**
      * Calling the super constructor
      */
-    private GoogleLocation(GoogleApiClient client) {super(client);}
+    private GoogleLocation(GoogleApiClient client) {
+        super(client);
+    }
 
     /**
      *
