@@ -19,6 +19,7 @@ public class BalourdosActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.controller = new BaseController();
         mServiceIntent = new Intent(BalourdosApplication.getContext(), OnLoadController.class);
+        this.startService(mServiceIntent);
         this.startHomeScreen();
     }
 
