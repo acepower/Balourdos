@@ -8,14 +8,22 @@ import android.widget.EditText;
 import com.balourdos.BalourdosApplication;
 import com.balourdos.Controllers.BaseController;
 import com.balourdos.Controllers.OnLoadController;
+import com.balourdos.Modules.DaggerGoogleComponent;
+import com.balourdos.Modules.GoogleComponent;
+import com.balourdos.Modules.GoogleModule;
 import com.balourdos.R;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 public class BalourdosActivity extends Activity {
     private BaseController controller;
     private Intent serviceIntent;
+    private GoogleApiClient client;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        GoogleComponent googleComponent = DaggerGoogleComponent.builder().googleModule(new GoogleModule()).build();
+        this.client = googleComponent.provideGoogleApiClient();
         super.onCreate(savedInstanceState);
         this.controller = new BaseController();
         this.serviceIntent = new Intent(BalourdosApplication.getContext(), OnLoadController.class);
