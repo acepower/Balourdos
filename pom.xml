@@ -81,7 +81,7 @@
             <groupId>org.jdeferred</groupId>
             <artifactId>jdeferred-android</artifactId>
             <version>1.2.4</version>
-            <type>apklib</type>mp
+            <type>apklib</type>
         </dependency>
     </dependencies>
 
