@@ -8,6 +8,9 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Places;
 import dagger.Module;
 import dagger.Provides;
+import org.jdeferred.Deferred;
+import org.jdeferred.Promise;
+import org.jdeferred.impl.DeferredObject;
 import javax.inject.Singleton;
 
 @Module
@@ -15,11 +18,12 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
     private boolean isConnected = false;
     private boolean isConnectionSuspended = false;
     private boolean isConnectonFailed = false;
-    private boolean mResolvingError = false;
-
+    private boolean resolvingError = false;
+    private Deferred deferred = new DeferredObject();
+    private Promise promise = deferred.promise();
 
     @Provides @Singleton
-    GoogleApiClient provideGoogleApiClient() {
+    public GoogleApiClient provideGoogleApiClient() {
         return new GoogleApiClient.Builder(BalourdosApplication.getContext())
             .addApi(LocationServices.API)
             .addApi(Places.GEO_DATA_API)
@@ -29,11 +33,18 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
             .build();
     }
 
+    @Provides @Singleton
+    public Promise provideGoogleConnect() {
+        this.provideGoogleApiClient().connect();
+        return this.promise;
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
         this.isConnected = true;
         this.isConnectionSuspended = false;
         this.isConnectonFailed = false;
+        this.deferred.resolve("done");
     }
 
     @Override
@@ -48,11 +59,11 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
         this.isConnected = false;
         this.isConnectonFailed = true;
 
-        if (mResolvingError) {
+        if (resolvingError) {
         } else if (connectionResult.hasResolution()) {
         } else {
-            showErrorDialog(connectionResult.getErrorCode());
-            mResolvingError = true;
+            this.deferred.reject(connectionResult.getErrorCode());
+            resolvingError = true;
         }
     }
 

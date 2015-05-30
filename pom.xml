@@ -77,6 +77,12 @@
             <version>2.0</version>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.jdeferred</groupId>
+            <artifactId>jdeferred-android</artifactId>
+            <version>...</version>
+            <type>apklib</type>
+        </dependency>
     </dependencies>
 
     <build>

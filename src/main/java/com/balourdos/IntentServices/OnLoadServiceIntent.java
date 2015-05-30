@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import com.balourdos.BalourdosContainer;
 import com.google.android.gms.common.api.GoogleApiClient;
+import org.jdeferred.DoneCallback;
+import org.jdeferred.FailCallback;
 
 public class OnLoadServiceIntent extends IntentService {
     private GoogleApiClient client;
@@ -15,9 +17,17 @@ public class OnLoadServiceIntent extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-    System.out.println(intent);
-    System.out.println("Hello world");
-        System.out.println("1st Client: "+this.client.hashCode()+ " 2d Client: " +BalourdosContainer.getGoogleClient().hashCode());
+        BalourdosContainer.googleConnect().done(new DoneCallback() {
+            @Override
+            public void onDone(Object successMessage) {
+                System.out.println(successMessage.toString());
+            }
+        }).fail(new FailCallback() {
+            @Override
+            public void onFail(Object errorCode) {
+                System.out.println(errorCode.toString());
+            }
+        });
     }
 
 
