@@ -12,14 +12,14 @@ import com.balourdos.R;
 
 public class BalourdosActivity extends Activity {
     private BaseController controller;
-    private Intent mServiceIntent;
+    private Intent serviceIntent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.controller = new BaseController();
-        mServiceIntent = new Intent(BalourdosApplication.getContext(), OnLoadController.class);
-        this.startService(mServiceIntent);
+        this.serviceIntent = new Intent(BalourdosApplication.getContext(), OnLoadController.class);
+        this.startService(this.serviceIntent);
         this.startHomeScreen();
     }
 
