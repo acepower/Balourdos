@@ -35,7 +35,7 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
     }
 
     @Provides @Singleton
-    public Promise provideGoogleConnect() {
+    public Promise<String,Integer,Integer> provideGoogleConnect() {
         this.provideGoogleApiClient().connect();
         return this.promise;
     }
