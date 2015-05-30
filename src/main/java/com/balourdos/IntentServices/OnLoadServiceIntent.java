@@ -15,6 +15,7 @@ public class OnLoadServiceIntent extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) { }
 
+    @Override
     public void onCreate() {
         this.client = BalourdosContainer.getGoogleClient();
     }
