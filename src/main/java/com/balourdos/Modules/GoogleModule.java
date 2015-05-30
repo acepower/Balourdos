@@ -13,6 +13,10 @@ import org.jdeferred.Promise;
 import org.jdeferred.impl.DeferredObject;
 import javax.inject.Singleton;
 
+/**
+ * This class creates a google API client connection and provides it to the application components.
+ * Also provides promises to help classes realise the state of the connectionto the google api client
+ */
 @Module
 public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private boolean isConnected = false;
@@ -34,12 +38,20 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
             .build();
     }
 
+    /**
+     *
+     * @return singleton promise if we're connected to the client
+     */
     @Provides @Singleton
     public Promise<String, Integer, Integer> provideGoogleConnect() {
         this.provideGoogleApiClient().connect();
         return this.promise;
     }
 
+    /**
+     *
+     * @param connectionHint good stuff goes there
+     */
     @Override
     public void onConnected(Bundle connectionHint) {
         this.isConnected = true;
@@ -48,6 +60,10 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
         this.deferred.resolve("done");
     }
 
+    /**
+     *
+     * @param cause the cause of the suspension of connection
+     */
     @Override
     public void onConnectionSuspended(int cause) {
         this.isConnectionSuspended = true;
@@ -55,6 +71,10 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
         System.out.println("Disconnected-suspended");
     }
 
+    /**
+     *
+     * @param connectionResult result of connection failure
+     */
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         this.isConnected = false;

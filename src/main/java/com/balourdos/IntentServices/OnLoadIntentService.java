@@ -7,6 +7,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.jdeferred.DoneCallback;
 import org.jdeferred.FailCallback;
 
+/**
+ * Service to load data on Application Startup
+ */
 public class OnLoadIntentService extends IntentService {
     private GoogleApiClient client;
 
@@ -15,6 +18,11 @@ public class OnLoadIntentService extends IntentService {
     }
 
 
+    /**
+     *
+     * @param intent one-off intent on creation of the application to load data.
+     *               Under normal Circumstances this service shouldn't be called more than once
+     */
     @Override
     protected void onHandleIntent(Intent intent) {
         BalourdosContainer.googleConnect().done(new DoneCallback<String>() {
