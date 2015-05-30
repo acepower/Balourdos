@@ -19,9 +19,9 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
     private boolean isConnectionSuspended = false;
     private boolean isConnectonFailed = false;
     private boolean resolvingError = false;
-    private Deferred<String,Integer,Integer> deferred = new DeferredObject<String, Integer, Integer>();
+    private Deferred<String, Integer, Integer> deferred = new DeferredObject<String, Integer, Integer>();
 
-    private Promise<String,Integer,Integer> promise = deferred.promise();
+    private Promise<String, Integer, Integer> promise = deferred.promise();
 
     @Provides @Singleton
     public GoogleApiClient provideGoogleApiClient() {
@@ -35,7 +35,7 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
     }
 
     @Provides @Singleton
-    public Promise<String,Integer,Integer> provideGoogleConnect() {
+    public Promise<String, Integer, Integer> provideGoogleConnect() {
         this.provideGoogleApiClient().connect();
         return this.promise;
     }

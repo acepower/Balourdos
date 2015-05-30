@@ -9,7 +9,7 @@ import org.jdeferred.Promise;
 public final class BalourdosContainer {
     private static final GoogleComponent googleComponent = DaggerGoogleComponent.builder().googleModule(new GoogleModule()).build();
 
-    public static Promise<String,Integer,Integer> googleConnect() {
+    public static Promise<String, Integer, Integer> googleConnect() {
         return googleComponent.provideGoogleConnect();
     }
 

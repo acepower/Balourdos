@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".IntentServices.OnLoadServiceIntent"
+        <service android:name=".IntentServices.OnLoadIntentService"
                  android:exported="false">
         </service>
         <meta-data

@@ -7,10 +7,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.jdeferred.DoneCallback;
 import org.jdeferred.FailCallback;
 
-public class OnLoadServiceIntent extends IntentService {
+public class OnLoadIntentService extends IntentService {
     private GoogleApiClient client;
 
-    public OnLoadServiceIntent() {
+    public OnLoadIntentService() {
         super("onLoadPullData");
     }
 

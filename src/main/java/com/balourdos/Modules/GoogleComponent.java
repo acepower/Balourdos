@@ -8,5 +8,5 @@ import dagger.Component;
 @Singleton @Component(modules = {GoogleModule.class})
 public interface GoogleComponent {
     GoogleApiClient provideGoogleApiClient();
-    Promise<String,Integer,Integer> provideGoogleConnect();
+    Promise<String, Integer, Integer> provideGoogleConnect();
 }
