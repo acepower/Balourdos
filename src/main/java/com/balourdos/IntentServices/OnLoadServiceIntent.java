@@ -8,12 +8,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class OnLoadServiceIntent extends IntentService {
     private GoogleApiClient client;
 
-    public OnLoadServiceIntent(String name) {
-        super(name);
+    public OnLoadServiceIntent() {
+        super("onLoadPullData");
     }
 
+
     @Override
-    protected void onHandleIntent(Intent intent) { }
+    protected void onHandleIntent(Intent intent) {
+    System.out.println(intent);
+    System.out.println("Hello world");}
 
     @Override
     public void onCreate() {
