@@ -80,8 +80,8 @@
         <dependency>
             <groupId>org.jdeferred</groupId>
             <artifactId>jdeferred-android</artifactId>
-            <version>...</version>
-            <type>apklib</type>
+            <version>1.2.4</version>
+            <type>apklib</type>mp
         </dependency>
     </dependencies>
 

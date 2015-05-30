@@ -17,15 +17,15 @@ public class OnLoadServiceIntent extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        BalourdosContainer.googleConnect().done(new DoneCallback() {
+        BalourdosContainer.googleConnect().done(new DoneCallback<String>() {
             @Override
-            public void onDone(Object successMessage) {
-                System.out.println(successMessage.toString());
+            public void onDone(String successMessage) {
+                System.out.println(successMessage);
             }
-        }).fail(new FailCallback() {
+        }).fail(new FailCallback<Integer>() {
             @Override
-            public void onFail(Object errorCode) {
-                System.out.println(errorCode.toString());
+            public void onFail(Integer errorCode) {
+                System.out.println(errorCode);
             }
         });
     }
