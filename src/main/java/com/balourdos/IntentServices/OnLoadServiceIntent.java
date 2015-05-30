@@ -16,7 +16,10 @@ public class OnLoadServiceIntent extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
     System.out.println(intent);
-    System.out.println("Hello world");}
+    System.out.println("Hello world");
+        System.out.println("1st Client: "+this.client.hashCode()+ " 2d Client: " +BalourdosContainer.getGoogleClient().hashCode());
+    }
+
 
     @Override
     public void onCreate() {
