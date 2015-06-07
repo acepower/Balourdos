@@ -7,15 +7,21 @@ import com.google.android.gms.location.places.*;
 
 import javax.inject.Inject;
 
-public class GooglePlaces extends GoogleConnection {
+public class GooglePlaces {
 
     private static GooglePlaces INSTANCE = null;
+    private final GoogleApiClient client;
 
     /**
      * super constructor
      */
-    private GooglePlaces(GoogleApiClient client){
-        super(client);
+    protected GooglePlaces(GoogleApiClient client) {
+        if(client != null) {
+            this.client = client;
+        }
+        else {
+            throw new NullPointerException("client cannot be null");
+        }
     }
 
     /**

@@ -8,14 +8,20 @@ import com.google.android.gms.location.*;
 
 import javax.inject.Inject;
 
-public class GoogleLocation extends GoogleConnection {
+public class GoogleLocation{
 
     private static GoogleLocation INSTANCE = null;
+    private final GoogleApiClient client;
     /**
      * Calling the super constructor
      */
     private GoogleLocation(GoogleApiClient client) {
-        super(client);
+        if(client != null) {
+            this.client = client;
+        }
+        else {
+            throw new NullPointerException("client cannot be null");
+        }
     }
 
     /**
