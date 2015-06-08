@@ -1,10 +1,17 @@
 package com.balourdos.Models;
 
 
+import android.app.PendingIntent;
 import android.location.Location;
 import com.balourdos.Constants;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.GeofencingApi;
+import com.google.android.gms.location.GeofencingRequest;
+import com.google.android.gms.location.LocationServices;
+
 
 import javax.inject.Inject;
 /**
@@ -33,7 +40,8 @@ public class GoogleGeofencing {
             this.googleClient=client;
         }
 
-        this.setUpGeofence();
+        //todo do something with this GeofenceRequest
+        GeofencingRequest aRequest = this.setUpGeofence();
 
     }
 
@@ -55,13 +63,22 @@ public class GoogleGeofencing {
     /**
      * creates the perimeter of interest, given a mobile location that is valid
      */
-    private void setUpGeofence()
+    private GeofencingRequest setUpGeofence()
     {
         this.userGeofence= new Geofence.Builder()
             .setRequestId("Test")
             .setCircularRegion(this.userLocation.getLatitude(),this.userLocation.getLongitude(), Constants.GEOFENCE_PERIMETER)
             .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT)
             .build();
+        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
+        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);
+        builder.addGeofence(this.userGeofence);
+        return builder.build();
+    }
+
+    public PendingResult<Status> addGoogleGeofences(GeofencingRequest geofencingRequest, PendingIntent pendingIntent)
+    {
+        return LocationServices.GeofencingApi.addGeofences(this.googleClient,geofencingRequest,pendingIntent);
     }
 
 }

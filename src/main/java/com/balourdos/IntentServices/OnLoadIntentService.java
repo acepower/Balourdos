@@ -28,7 +28,7 @@ public class OnLoadIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         Bundle extras = intent.getExtras();
         if(extras==null) {
-        //todo
+            throw new NullPointerException("Extras are not meant to be null");
         }
         else {
             String intentCommand = extras.getString("appStage");
