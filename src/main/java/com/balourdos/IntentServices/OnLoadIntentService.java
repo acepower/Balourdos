@@ -2,6 +2,7 @@ package com.balourdos.IntentServices;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Bundle;
 import com.balourdos.BalourdosContainer;
 import com.google.android.gms.common.api.GoogleApiClient;
 import org.jdeferred.DoneCallback;
@@ -13,7 +14,7 @@ import org.jdeferred.FailCallback;
 public class OnLoadIntentService extends IntentService {
     private GoogleApiClient client;
 
-    public OnLoadIntentService() {
+    private OnLoadIntentService() {
         super("onLoadPullData");
     }
 
@@ -25,6 +26,32 @@ public class OnLoadIntentService extends IntentService {
      */
     @Override
     protected void onHandleIntent(Intent intent) {
+        Bundle extras = intent.getExtras();
+        if(extras==null) {
+        //todo
+        }
+        else {
+            String intentCommand = extras.getString("appStage");
+            if(intentCommand.equals("Startup")){
+                this.onApplicationStartup();
+            }
+        }
+
+    }
+
+
+    @Override
+    public void onCreate() {
+        this.client = BalourdosContainer.getGoogleClient();
+        super.onCreate();
+    }
+
+    /**
+     * Do stuff when the application is created
+     * Investiage what happens on recreation of the application
+     */
+    private void onApplicationStartup()
+    {
         BalourdosContainer.googleConnect().done(new DoneCallback<String>() {
             @Override
             public void onDone(String successMessage) {
@@ -36,13 +63,6 @@ public class OnLoadIntentService extends IntentService {
                 System.out.println(errorCode);
             }
         });
-    }
-
-
-    @Override
-    public void onCreate() {
-        this.client = BalourdosContainer.getGoogleClient();
-        super.onCreate();
     }
 
 }

@@ -56,7 +56,7 @@ public class GoogleLocation{
      * @param request The location request for the updates.
      * @return a PendingResult for the call, check isSuccess() of Status class to determine if it was successful.
      */
-    public PendingResult<Status> RequestLocationUpdate(LocationListener listener, LocationRequest request)
+    public PendingResult<Status> requestLocationUpdates(LocationListener listener, LocationRequest request)
     {
         try {return LocationServices.FusedLocationApi.requestLocationUpdates(this.client, request, listener);}
         catch (Exception e) {
@@ -65,7 +65,7 @@ public class GoogleLocation{
         return null;
     }
 
-    public PendingResult<Status> RemoveLocationUpdates(LocationListener listener)
+    public PendingResult<Status> removeLocationUpdates(LocationListener listener)
     {
         try{return LocationServices.FusedLocationApi.removeLocationUpdates(this.client, listener);}
         catch (Exception e){

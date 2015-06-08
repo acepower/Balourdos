@@ -6,27 +6,26 @@ import android.os.Bundle;
 import android.widget.EditText;
 import com.balourdos.Controllers.BaseController;
 import com.balourdos.IntentServices.OnLoadIntentService;
-import com.balourdos.BalourdosContainer;
 import com.balourdos.R;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 public class BalourdosActivity extends Activity {
     private BaseController controller;
-    private Intent serviceIntent;
-    private GoogleApiClient client;
+    private Intent onLoadIntent;
+    private String intentMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.init();
-        this.startService(this.serviceIntent);
+        this.startService(this.onLoadIntent);
         this.startHomeScreen();
     }
 
     private void init() {
-        this.client = BalourdosContainer.getGoogleClient();
+        this.intentMessage = "Startup";
         this.controller = new BaseController();
-        this.serviceIntent = new Intent(this, OnLoadIntentService.class);
+        this.onLoadIntent = new Intent(this, OnLoadIntentService.class);
+        this.onLoadIntent.putExtra("appStage",this.intentMessage);
     }
 
 
