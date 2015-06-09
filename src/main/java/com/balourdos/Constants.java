@@ -8,4 +8,5 @@ public abstract class Constants {
 
 
     public static int GEOFENCE_PERIMETER = 300;
+    public static int ADDRESSES = 4;
 }
