@@ -23,6 +23,7 @@ public final class LocationProcessing {
      */
     public static List<Address> getAddresses(double latitude, double longitude, int maxResults)
     {
+        System.out.println("Reached here");
         if(latitude<=-90 || latitude>=90)
             throw new IllegalArgumentException("Incorrect latitude input");
         if(longitude<=-180 || longitude>=180)
@@ -31,6 +32,24 @@ public final class LocationProcessing {
         try {
             return locProcessor.getFromLocation(latitude,longitude,maxResults);
         } catch (IOException e) {
+            return null;
+        }
+    }
+
+    /**
+     *
+     * @param locationName the name of the location
+     * @param maxResults should be a small number
+     * @return list of addresses given a name
+     */
+    public static List<Address> getAddressesByName(String locationName, int maxResults)
+    {
+        if(locationName==null)
+            throw new IllegalArgumentException("Location name cannot be null");
+        try {
+            return locProcessor.getFromLocationName(locationName,maxResults);
+        }
+        catch (IOException e) {
             return null;
         }
     }

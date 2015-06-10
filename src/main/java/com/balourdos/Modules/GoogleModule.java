@@ -56,7 +56,9 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
         this.isConnected = true;
         this.isConnectionSuspended = false;
         this.isConnectonFailed = false;
+        System.out.println("is a resolve pending?" + this.deferred.isPending());
         this.deferred.resolve("done");
+        System.out.println("connected to google play");
     }
 
     /**

@@ -2,6 +2,7 @@ package com.balourdos.IntentServices;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import com.balourdos.BalourdosContainer;
 import com.balourdos.Constants;
@@ -12,6 +13,7 @@ import org.jdeferred.DoneCallback;
 import org.jdeferred.FailCallback;
 
 import javax.xml.stream.Location;
+import java.util.List;
 
 /**
  * Service to load data on Application Startup
@@ -37,11 +39,24 @@ public class OnLoadIntentService extends IntentService {
             throw new NullPointerException("Extras are not meant to be null");
         }
         else {
-            System.out.println("extras not null");
             String intentCommand = extras.getString("appStage");
             if(intentCommand.equals("Startup")){
-                System.out.println("extras == startup");
-                this.onApplicationStartup();
+                BalourdosContainer.googleConnect().done(new DoneCallback<String>() {
+                    @Override
+                    public void onDone(String successMessage) {
+
+//                       this code is reached before client is connected. the below statement returns false.
+                        System.out.println(successMessage);
+                        System.out.println(client.isConnected());
+                        location = GoogleLocation.getLocationObj(client);
+                        test();
+                    }
+                }).fail(new FailCallback<Integer>() {
+                    @Override
+                    public void onFail(Integer errorCode) {
+                        System.out.println(errorCode);
+                    }
+                });
             }
         }
 
@@ -51,35 +66,22 @@ public class OnLoadIntentService extends IntentService {
     @Override
     public void onCreate() {
         this.client = BalourdosContainer.getGoogleClient();
-        this.location = GoogleLocation.getLocationObj(this.client);
         super.onCreate();
-    }
-
-    /**
-     * Do stuff when the application is created
-     * Investiage what happens on recreation of the application
-     */
-    private void onApplicationStartup()
-    {
-        BalourdosContainer.googleConnect().done(new DoneCallback<String>() {
-            @Override
-            public void onDone(String successMessage) {
-                System.out.println("Connected to google play");
-                test();
-            }
-        }).fail(new FailCallback<Integer>() {
-            @Override
-            public void onFail(Integer errorCode) {
-                System.out.println(errorCode);
-            }
-        });
     }
 
     private void test()
     {
+        System.out.println("reached test");
         android.location.Location myLocation = this.location.getLastLocation();
-        System.out.println("Adresses : ");
-        System.out.println(LocationProcessing.getAddresses(myLocation.getLatitude(), myLocation.getLongitude(), Constants.ADDRESSES));
+        List<Address> addresses = LocationProcessing.getAddresses(myLocation.getLatitude(), myLocation.getLongitude(), Constants.ADDRESSES);
+        if(addresses!=null) {
+            for (Address in : addresses) {
+
+                System.out.println("Address: "+in);
+            }
+        }
+        else
+            System.out.println("addresses are null");
 
     }
 
