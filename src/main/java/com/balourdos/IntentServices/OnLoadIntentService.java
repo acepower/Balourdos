@@ -47,7 +47,8 @@ public class OnLoadIntentService extends IntentService {
 
 //                       this code is reached before client is connected. the below statement returns false.
                         System.out.println(successMessage);
-                        System.out.println(client.isConnected());
+                        System.out.println("Is the client connected?"+client.isConnected());
+                        System.out.println("Is the client attempting to connect?"+client.isConnecting());
                         location = GoogleLocation.getLocationObj(client);
                         test();
                     }
@@ -65,13 +66,13 @@ public class OnLoadIntentService extends IntentService {
 
     @Override
     public void onCreate() {
-        this.client = BalourdosContainer.getGoogleClient();
         super.onCreate();
+        client = BalourdosContainer.getGoogleClient();
     }
 
     private void test()
     {
-        System.out.println("reached test");
+        System.out.println("Is the client inside test connected? :"+this.client.isConnected());
         android.location.Location myLocation = this.location.getLastLocation();
         List<Address> addresses = LocationProcessing.getAddresses(myLocation.getLatitude(), myLocation.getLongitude(), Constants.ADDRESSES);
         if(addresses!=null) {

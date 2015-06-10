@@ -2,6 +2,7 @@ package com.balourdos.Modules;
 
 import android.os.Bundle;
 import com.balourdos.BalourdosApplication;
+import com.balourdos.BalourdosContainer;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -43,7 +44,7 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
      */
     @Provides @Singleton
     public Promise<String, Integer, Integer> provideGoogleConnect() {
-        this.provideGoogleApiClient().connect();
+        BalourdosContainer.getGoogleClient().connect();
         return this.promise;
     }
 
@@ -56,9 +57,8 @@ public class GoogleModule implements GoogleApiClient.ConnectionCallbacks, Google
         this.isConnected = true;
         this.isConnectionSuspended = false;
         this.isConnectonFailed = false;
-        System.out.println("is a resolve pending?" + this.deferred.isPending());
         this.deferred.resolve("done");
-        System.out.println("connected to google play");
+        System.out.println("is the client connected after resolved?" + BalourdosContainer.getGoogleClient().isConnected());
     }
 
     /**

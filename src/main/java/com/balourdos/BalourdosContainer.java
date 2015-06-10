@@ -12,12 +12,13 @@ import org.jdeferred.Promise;
  */
 public final class BalourdosContainer {
     private static final GoogleComponent googleComponent = DaggerGoogleComponent.builder().googleModule(new GoogleModule()).build();
+    private static final GoogleApiClient theClient = googleComponent.provideGoogleApiClient();
 
     public static Promise<String, Integer, Integer> googleConnect() {
         return googleComponent.provideGoogleConnect();
     }
 
     public static GoogleApiClient getGoogleClient() {
-        return googleComponent.provideGoogleApiClient();
+        return theClient;
     }
 }
